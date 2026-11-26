@@ -1,0 +1,19 @@
+# Allow-list: only the Verilog game and the files needed to build, simulate and load it.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/kaiju_fpga/
+/kaiju_fpga/*
+!/kaiju_fpga/README.md
+!/kaiju_fpga/*.tcl
+!/kaiju_fpga/*.bat
+!/kaiju_fpga/rtl/
+!/kaiju_fpga/constrs/
+!/kaiju_fpga/mem/
+!/kaiju_fpga/sim/
+!/kaiju_fpga/tools/
+/kaiju_fpga/tools/*.png
+!/kaiju_fpga/bit/
+/kaiju_fpga/bit/*
+!/kaiju_fpga/bit/kaiju_top.bit

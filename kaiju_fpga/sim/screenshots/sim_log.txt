@@ -1,0 +1,53 @@
+﻿
+****** xsim v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Thu Nov 19 20:29:35 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tbsim/xsim_script.tcl
+# xsim {tbsim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+start: frame 2  px=1080 py=1388 z=0 form=0 state=0 score=0 trees=0 destroyed=0 time=240 led=0000000000000000
+  ok  : start position, form 1
+[65722400000] saved shot_1_start.ppm
+walk up 30 frames: frame 34  px=1080 py=1328 z=0 form=0 state=0 score=0 trees=0 destroyed=0 time=240 led=0000000000000000
+  ok  : hatchling walks 2 px per frame
+  ok  : camera follows the player
+walk left into houses: frame 55  px=1077 py=1328 z=0 form=0 state=0 score=0 trees=0 destroyed=0 time=240 led=0000000000000000
+walk right through trees: frame 117  px=1137 py=1388 z=0 form=0 state=0 score=15 trees=3 destroyed=0 time=239 led=0000000000000011
+  ok  : trees eaten, 5 points each
+  ok  : LED bar shows progress
+in the air: frame 127  px=1137 py=1388 z=170 form=0 state=0 score=15 trees=3 destroyed=0 time=238 led=0000000000000011
+  ok  : jump: z > 0
+[2165722400000] saved shot_2_jump.ppm
+landed: frame 153  px=1137 py=1388 z=0 form=0 state=0 score=15 trees=3 destroyed=0 time=238 led=0000000000000011
+  ok  : gravity brings the player down
+SW = 11: frame 155  px=1137 py=1388 z=0 form=2 state=0 score=15 trees=3 destroyed=0 time=238 led=0000000000000000
+  ok  : debug switch forces form 3
+after stomp: frame 180  px=1137 py=1388 z=0 form=2 state=0 score=60 trees=3 destroyed=0 time=237 led=0000000000000000
+[3056122400000] saved shot_3_stomp.ppm
+kaiju walks up: frame 272  px=1137 py=1298 z=0 form=2 state=0 score=180 trees=3 destroyed=4 time=236 led=0000000000000000
+  ok  : KAIJU smashes buildings
+[4601722400000] saved shot_4_smash.ppm
+tile (row 80, col 68): now 9, map ROM 9
+  ok  : reset copies the map ROM back
+  ok  : reset: score 0, form 1
+20 trees: frame 275  px=1080 py=1388 z=0 form=0 state=1 score=0 trees=20 destroyed=0 time=240 led=1111111111111111
+  ok  : evolving
+[5339444200000] saved shot_5_evolve.ppm
+after evolve: frame 376  px=1080 py=1388 z=0 form=1 state=0 score=0 trees=20 destroyed=0 time=239 led=0000000000000000
+  ok  : form 2 after 96 frames
+[6364244200000] saved shot_6_beast.ppm
+time up: frame 439  px=1080 py=1388 z=0 form=1 state=3 score=0 trees=20 destroyed=0 time=0 led=0000000000000000
+  ok  : time 0 -> game over
+[7422644200000] saved shot_7_timeup.ppm
+==== 0 error(s) ====
+$finish called at time : 7422644200 ns : File "C:/Users/pokpo/Desktop/DGTA/Final_Project/kaiju_fpga/sim/tb_kaiju.v" Line 170
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:12:34 . Memory (MB): peak = 196.102 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 32160 KB (Peak: 32160 KB), Simulation CPU Usage: 753030 ms
+INFO: [Common 17-206] Exiting xsim at Thu Nov 19 20:42:13 2026...

@@ -1,0 +1,34 @@
+﻿
+****** xsim v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Thu Nov 19 22:12:56 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/unitsim/xsim_script.tcl
+# xsim {unitsim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+start: frame 7 px=1080 py=1388 form=2 state=0 hp=9 score=0 e_on=00000000 b_on=00000000 it_on=0 shield=0 stun0=0
+  ok  : playing as the full kaiju
+  ok  : full kaiju has 9 HP
+enemies placed: frame 17 px=1080 py=1388 form=2 state=0 hp=9 score=0 e_on=00001111 b_on=00000011 it_on=1 shield=0 stun0=0
+  ok  : enemies fire bullets
+[frame 18] saved shot_u1_enemies.ppm
+after bullets: frame 43 px=1080 py=1388 form=2 state=0 hp=8 score=0 e_on=00001111 b_on=00000010 it_on=1 shield=0 stun0=0
+  ok  : bullets hurt the kaiju (HP went down)
+walked to the item: frame 74 px=1110 py=1418 form=2 state=0 hp=8 score=15 e_on=00001111 b_on=00000000 it_on=0 shield=1 stun0=0
+  ok  : shield item picked up
+[frame 75] saved shot_u2_shield.ppm
+roar: frame 77 px=1110 py=1418 form=2 state=0 hp=8 score=15 e_on=00001111 b_on=00000000 it_on=0 shield=1 stun0=119
+  ok  : roar started (cooldown running)
+stomp: frame 102 px=1110 py=1418 form=2 state=0 hp=8 score=90 e_on=00001101 b_on=00000000 it_on=0 shield=1 stun0=94
+[frame 103] saved shot_u3_stomp.ppm
+==== 0 error(s) ====
+$finish called at time : 1745722440 ns : File "C:/Users/pokpo/Desktop/DGTA/Final_Project/kaiju_fpga/sim/tb_units.v" Line 142
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:06:31 . Memory (MB): peak = 195.180 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 32744 KB (Peak: 32744 KB), Simulation CPU Usage: 389827 ms
+INFO: [Common 17-206] Exiting xsim at Thu Nov 19 22:19:30 2026...
