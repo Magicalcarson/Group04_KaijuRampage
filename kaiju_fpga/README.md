@@ -102,7 +102,7 @@ C:\Xilinx\Vivado\2024.2\bin\vivado.bat -mode batch -source program.tcl
 | `rtl/kaiju_sound.v` | เสียงเอฟเฟกต์ + เพลง ออกทาง AUD_PWM |
 | `rtl/kaiju_mic.v` | อ่านไมค์ PDM, ตรวจเสียงตะโกน 3 ช่วงติดกัน |
 | `rtl/kaiju_lib.v` | vga_sync, ROM, tile RAM 2 พอร์ต, bin→BCD, 7-segment |
-| `mem/*.mem` | palette, tile, sprite 3 ร่าง, แผนที่ |
+| `mem/*.mem` | palette, tile, sprite 3 ร่าง, แผนที่ (จาก `tools/make_assets.py`) |
 | `mem/spr_enemy.mem`, `spr_boom.mem`, `spr_items.mem` | ศัตรู 4 ชนิด, ระเบิด, ไอเท็ม 3 แบบ (จาก `tools/make_units.py`) |
 | `mem/overlay.mem` | ตัวหนังสือ 6 หน้า 160×120 (จาก `tools/make_overlay.py`) |
 | `constrs/kaiju.xdc` | ขาของ Nexys A7-100T |
