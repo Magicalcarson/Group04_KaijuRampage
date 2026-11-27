@@ -1,4 +1,4 @@
-# Kaiju Rampage — CPE222 Final Project (Group 04)
+# Kaiju Rampage: CPE222 Final Project (Group 04)
 
 An FPGA game in Verilog for the Digilent Nexys A7-100T, built with Vivado 2024.2.
 

@@ -1,6 +1,6 @@
 # Kaiju Rampage FULL GAME : write bit/kaiju_top_flash.mcs into the board's QSPI flash, then load bit/kaiju_top.bit over JTAG.
-# After this the board starts the DEMO by itself at power-on when jumper JP1 is on QSPI.
-# Run by 2_FLASH_DEMO_QSPI.bat, or: vivado -mode batch -source program_flash.tcl [-tclargs <flash part>]
+# After this the board starts the full game by itself at power-on when jumper JP1 is on QSPI.
+# Run by FLASH_FULL_QSPI.bat, or: vivado -mode batch -source program_full_flash.tcl [-tclargs <flash part>]
 # Flash part: Nexys A7-100T = Spansion S25FL128S -> s25fl128sxxxxxx0-spi-x1_x2_x4 (default)
 set here [file dirname [file normalize [info script]]]
 set mcs  $here/bit/kaiju_top_flash.mcs

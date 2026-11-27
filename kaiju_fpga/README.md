@@ -14,14 +14,9 @@
 | **3.6 · เมืองพังได้จริง** | กินต้นไม้/รถ, บ้านกลายเป็นไฟ, ตึก 2×2 พังทั้งหลัง, ไฟดับเองกลายเป็นซาก, stomp ของร่าง 3, เริ่มใหม่แล้วเมืองกลับมา |
 | **3.7 · แหกปากใส่ไมค์ → คำราม** | ตะโกนใส่ไมค์บนบอร์ด → ศัตรูในรัศมี 128 px นิ่ง 2 วิ และกระสุนรอบตัวหายไป พักเสียง 5 วิ (LED17 ฟ้า = พร้อม, แดง = พัก) |
 
-## 2 เวอร์ชัน: DEMO (Progress 20 Nov) และเกมเต็ม
+## เวอร์ชัน DEMO (Progress Presentation 20 Nov)
 
-| ไฟล์ | ใช้เมื่อ | มีอะไรบ้าง |
-|---|---|---|
-| `bit/kaiju_demo.bit` | Progress Presentation 20 Nov (ครึ่งแรกของ Work Plan) | Feature 1 ครบ, วิวัฒนาการร่าง 1 → 2, ระบบ tile, เมืองพังได้, LED bar, 7-segment (หลัก HP แสดงเลขร่าง), หน้า Title |
-| `bit/kaiju_top.bit` | เกมเต็ม (ส่ง 27 Nov) | ทุกอย่างด้านบน + ร่าง 3 และ stomp, ศัตรู, HP, Power-ups, เสียงและเพลง, ไมค์คำราม |
-
-ทั้งสองเวอร์ชันมาจากโค้ดชุดเดียวกัน ต่างกันที่พารามิเตอร์ `DEMO` ใน `kaiju_top.v` (`DEMO = 1` ปิดส่วนครึ่งหลัง) ใน DEMO สวิตช์ `SW1 SW0 = 11` จะได้ร่าง 2
+ไฟล์ `bit/kaiju_top.bit` ที่ให้มาเป็นเกมเต็ม (ส่ง 27 Nov) ส่วนเวอร์ชัน DEMO ที่ใช้ตอน Progress Presentation มาจากโค้ดชุดเดียวกัน ต่างกันที่พารามิเตอร์ `DEMO` ใน `kaiju_top.v` (`DEMO = 1` ปิดร่าง 3, ศัตรู, HP, Power-ups, เสียง และไมค์) ใน DEMO สวิตช์ `SW1 SW0 = 11` จะได้ร่าง 2 สร้างและโหลดลงบอร์ดได้ด้วย
 
 ```
 C:\Xilinx\Vivado\2024.2\bin\vivado.bat -mode batch -source build.tcl -tclargs demo
@@ -86,7 +81,7 @@ C:\Xilinx\Vivado\2024.2\bin\vivado.bat -mode batch -source program.tcl
 
 ทั้งสองไฟล์เซฟภาพหน้าจอจากขา VGA เป็น `shot_*.ppm` แปลงเป็น PNG ด้วย `python sim/ppm_to_png.py <โฟลเดอร์>`
 
-ผลล่าสุด (19 Nov, Vivado xsim): `tb_kaiju` ผ่าน 0 error, `tb_units` ผ่าน 7/7 ข้อ (log และภาพอยู่ใน `sim/screenshots/`) · build: timing ผ่าน (WNS +20 ns) ใช้ LUT 6.1%, BRAM 21.5 tile (16%), DSP 2
+ผลล่าสุด (19 Nov, Vivado xsim): `tb_kaiju` ผ่าน 0 error, `tb_units` ผ่าน 7/7 ข้อ (log และภาพอยู่ใน `sim/screenshots/`) · build: timing ผ่าน (WNS +20 ns) ใช้ LUT 6.2%, BRAM 21.5 tile (16%), DSP 2
 
 ---
 
@@ -97,7 +92,7 @@ C:\Xilinx\Vivado\2024.2\bin\vivado.bat -mode batch -source program.tcl
 | `rtl/kaiju_top.v` | top: ขาบอร์ด, นาฬิกา 25 MHz, reset |
 | `rtl/clk_gen.v` | MMCM 100 MHz → 25 MHz (ไฟล์เดียวกับ LAB08) |
 | `rtl/kaiju_core.v` | ต่อทุกส่วนเข้าด้วยกัน, 7-segment, LED |
-| `rtl/kaiju_game.v` | ตรรกะเกม: FSM ทำงานเฟรมละครั้งตอน blank (y = 480) — ผู้เล่น, ศัตรู 8 ช่อง, กระสุน 8 ช่อง, ระเบิด 4 ช่อง, ไอเท็ม |
+| `rtl/kaiju_game.v` | ตรรกะเกม: FSM ทำงานเฟรมละครั้งตอน blank (y = 480): ผู้เล่น, ศัตรู 8 ช่อง, กระสุน 8 ช่อง, ระเบิด 4 ช่อง, ไอเท็ม |
 | `rtl/kaiju_render.v` | วาดภาพ: tile + ไอเท็ม + ศัตรู + ผู้เล่น + กระสุน + ระเบิด + ตัวหนังสือ, pipeline 4 clock |
 | `rtl/kaiju_sound.v` | เสียงเอฟเฟกต์ + เพลง ออกทาง AUD_PWM |
 | `rtl/kaiju_mic.v` | อ่านไมค์ PDM, ตรวจเสียงตะโกน 3 ช่วงติดกัน |
