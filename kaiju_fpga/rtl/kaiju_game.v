@@ -110,7 +110,7 @@ module kaiju_game #(
     localparam [10:0] START_X = 11'd1080, START_Y = 11'd1388;   // feet of the baby kaiju
     localparam [10:0] MAP_Y1  = 11'd1535;                        // last map pixel row
     localparam        EVO_TREES = 20, EVO_SCORE = 1500;
-    localparam        GOAL      = 350;          // ~15 % of the 2,399 building tiles (was 600)
+    localparam        GOAL      = 600;          // 25 % of the 2,399 building tiles
     localparam        TIME_S    = 240;
     localparam        MAP_TILES = 12288;        // 128 x 96
 
@@ -134,8 +134,8 @@ module kaiju_game #(
     function [3:0] f_hp;      input [1:0] f; f_hp     = f == 0 ? 4'd3 : f == 1 ? 4'd6 : 4'd9; endfunction       // full HP
     function [4:0] f_hx;      input [1:0] f; f_hx     = f == 0 ? 5'd5 : f == 1 ? 5'd10 : 5'd15; endfunction    // body half width
     function [4:0] f_hy;      input [1:0] f; f_hy     = f == 0 ? 5'd7 : f == 1 ? 5'd14 : 5'd21; endfunction    // body half height
-    function [3:0] f_cap;     input [1:0] f; f_cap    = f == 0 ? 4'd3 : f == 1 ? 4'd6 : 4'd5; endfunction       // enemies at most
-    function [7:0] f_every;   input [1:0] f; f_every  = f == 0 ? 8'd100 : f == 1 ? 8'd70 : 8'd110; endfunction  // frames between spawns
+    function [3:0] f_cap;     input [1:0] f; f_cap    = f == 0 ? 4'd4 : f == 1 ? 4'd8 : 4'd8; endfunction       // enemies at most
+    function [7:0] f_every;   input [1:0] f; f_every  = f == 0 ? 8'd100 : f == 1 ? 8'd70 : 8'd55; endfunction  // frames between spawns
 
     // enemy numbers by type
     function [7:0] e_keep;    input [1:0] t; e_keep   = t == E_POLICE ? 8'd80 : t == E_TANK ? 8'd100 : t == E_HELI ? 8'd110 : 8'd0; endfunction
@@ -444,7 +444,7 @@ module kaiju_game #(
     // LED bar: progress to the NEXT goal (trees -> score -> city destroyed), 16 LEDs = done
     wire [9:0]  lv_t = trees * 10'd13;            // trees * 16 / 20
     wire [23:0] lv_s = score * 24'd700;           // score * 16 / 1500  (>> 16)
-    wire [23:0] lv_d = destroyed * 24'd2996;      // destroyed * 16 / 350  (>> 16)
+    wire [23:0] lv_d = destroyed * 24'd1748;      // destroyed * 16 / 600  (>> 16)
     wire [7:0]  level = (form == 0) ? {3'b0, lv_t[9:4]} : (form == 1) ? lv_s[23:16] : lv_d[23:16];
     wire [15:0] bar   = (level >= 16) ? 16'hFFFF : ((16'h1 << level[3:0]) - 16'h1);
 
@@ -461,7 +461,7 @@ module kaiju_game #(
                     shield <= 1'b0;  shield_t <= 0;  inv <= 7'd60;
                 end else begin
                     hp  <= (hp > {2'b0, d}) ? hp - d : 4'd0;
-                    inv <= (form == 2) ? 7'd120 : 7'd90;     // full kaiju: longer safe time
+                    inv <= 7'd90;
                 end
             end
         end
@@ -839,7 +839,7 @@ module kaiju_game #(
                 if (e_cd[ei] != 0)
                     e_cd[ei] <= e_cd[ei] - 1'b1;
                 else if (edist < 14'd200) begin
-                    e_cd[ei] <= e_cdbase(et) + {2'b0, lfsr[5:0]} + ((form == 2) ? 8'd40 : 8'd0);   // full kaiju: slower fire
+                    e_cd[ei] <= e_cdbase(et) + {2'b0, lfsr[5:0]};
                     shots <= (et == E_HELI) ? 2'd3 : 2'd1;   shot_k <= 0;   shot_dir <= aim_dir;
                     st <= S_E_SHOT;
                 end
@@ -930,7 +930,7 @@ module kaiju_game #(
         //---------------- win / lose
         S_END: begin
             if (gstate == G_PLAY || gstate == G_EVOLVE) begin
-                if (destroyed >= GOAL)            begin gstate <= G_WIN;  sfx <= SFX_FANFARE; end
+                if (destroyed >= GOAL || score >= 14'd9999) begin gstate <= G_WIN;  sfx <= SFX_FANFARE; end   // city cleared or max score
                 else if (hp == 0 || time_s == 0) begin gstate <= G_OVER; sfx <= SFX_OVER;    end
             end
             st <= S_CAM;
